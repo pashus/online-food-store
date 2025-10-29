@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ProtectedRoute, PublicRoute } from "@/components";
-import { LoginPage, RegisterPage } from "@/pages";
+import { LoginPage, RegisterPage, UsersPage } from "@/pages";
 
-function App() {
+export function App() {
   const router = createBrowserRouter([
     {
       element: <PublicRoute />,
@@ -14,12 +14,10 @@ function App() {
     },
     {
       element: <ProtectedRoute />,
-      children: [{}],
+      children: [{ path: "/users", element: <UsersPage /> }],
     },
     { path: "*", element: <h1>404: Страница не найдена</h1> },
   ]);
 
   return <RouterProvider router={router} />;
 }
-
-export default App;

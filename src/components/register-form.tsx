@@ -22,6 +22,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { api } from "@/api";
 import { AxiosError } from "axios";
 import { useState } from "react";
+import { useRegister } from "@/hooks";
 
 const formSchema = z.object({
   username: z.string(),
@@ -32,8 +33,8 @@ export function RegisterForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const navigate = useNavigate();
   const [error, setError] = useState("");
+  const { mutateAsync: register } = useRegister();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,10 +46,7 @@ export function RegisterForm({
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
-      const res = await api.post("/register", data);
-      console.log(res);
-
-      navigate("/login");
+      await register(data);
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error.response?.data);

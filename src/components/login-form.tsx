@@ -19,9 +19,9 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { api } from "@/api";
 import { AxiosError } from "axios";
 import { useState } from "react";
+import { useLogin } from "@/hooks";
 
 const formSchema = z.object({
   username: z.string(),
@@ -32,8 +32,8 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const navigate = useNavigate();
   const [error, setError] = useState("");
+  const { mutateAsync: login } = useLogin();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,11 +45,7 @@ export function LoginForm({
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
-      const { data: token } = await api.post("/login", data);
-      console.log(token.token);
-      localStorage.setItem("token", token.token);
-
-      navigate("/users");
+      await login(data);
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error.response?.data);
