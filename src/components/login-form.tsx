@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,13 +14,14 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import * as z from "zod";
+import { useLogin } from "@/hooks";
+import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import { useState } from "react";
-import { useLogin } from "@/hooks";
+import { Controller, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import * as z from "zod";
 
 const formSchema = z.object({
   username: z.string(),

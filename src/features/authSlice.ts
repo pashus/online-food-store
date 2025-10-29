@@ -1,5 +1,5 @@
 import type { IAuthState } from "@/types";
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: IAuthState = {
   isAuthenticated: false,
@@ -24,7 +24,11 @@ const authSlice = createSlice({
       localStorage.removeItem("token");
     },
   },
+  selectors: {
+    getIsAuthenticated: (state) => state.isAuthenticated,
+  },
 });
 
 export default authSlice.reducer;
 export const { setToken, logout } = authSlice.actions;
+export const { getIsAuthenticated } = authSlice.selectors;

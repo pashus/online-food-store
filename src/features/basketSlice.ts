@@ -18,7 +18,11 @@ const basketSlice = createSlice({
       );
     },
   },
+  selectors: {
+    getBasketProducts: (state) => state.products,
+  },
 });
 
 export default basketSlice.reducer;
 export const { addProduct, removeProduct } = basketSlice.actions;
+export const { getBasketProducts } = basketSlice.selectors;
