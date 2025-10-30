@@ -1,9 +1,10 @@
+import { setToken } from "@/features/authSlice";
+import { useAppDispatch } from "@/hooks";
 import { authService } from "@/services";
 import type { ILoginData } from "@/types";
 import { useMutation } from "@tanstack/react-query";
+import type { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "@/hooks";
-import { setToken } from "@/features/authSlice";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -18,6 +19,8 @@ export const useLogin = () => {
       dispatch(setToken(data.token));
       navigate("/users");
     },
-    onError: (error) => console.log(error),
+    onError: (error: AxiosError) => {
+      console.log(error);
+    },
   });
 };
