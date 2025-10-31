@@ -1,6 +1,6 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ProtectedRoute, PublicRoute } from "@/components";
 import { LoginPage, RegisterPage, UsersPage } from "@/pages";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 export function App() {
   const router = createBrowserRouter([
@@ -19,5 +19,9 @@ export function App() {
     { path: "*", element: <h1>404: Страница не найдена</h1> },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <div>
+      <RouterProvider router={router} />
+    </div>
+  );
 }

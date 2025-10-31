@@ -8,7 +8,7 @@ export function ThemeSelect({ ...props }) {
   return (
     <select
       className={cn(
-        "rounded-lg border border-gray-300 bg-white px-4 py-2 focus:ring-1 focus:ring-blue-400 focus:outline-none dark:border-gray-600 dark:bg-[#171717]",
+        "rounded-lg border border-gray-300 bg-white px-4 py-2 focus:ring-1 focus:outline-none dark:border-gray-600 dark:bg-[#171717]",
         props.className,
       )}
       value={theme}

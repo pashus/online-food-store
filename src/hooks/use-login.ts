@@ -1,3 +1,4 @@
+import { toast } from "@/features";
 import { setToken } from "@/features/authSlice";
 import { useAppDispatch } from "@/hooks";
 import { authService } from "@/services";
@@ -9,6 +10,10 @@ import { useNavigate } from "react-router-dom";
 export const useLogin = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  // const errorNotify = (text: string) =>
+  //   toast({
+  //     title: text,
+  //   });
 
   return useMutation({
     mutationFn: async (userData: ILoginData) => {
@@ -20,6 +25,7 @@ export const useLogin = () => {
       navigate("/users");
     },
     onError: (error: AxiosError) => {
+      // errorNotify(error.message); // например
       console.log(error);
     },
   });
