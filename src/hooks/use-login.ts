@@ -13,6 +13,7 @@ export const useLogin = () => {
   // const errorNotify = (text: string) =>
   //   toast({
   //     title: text,
+  //     variant: "error",
   //   });
 
   return useMutation({
