@@ -1,7 +1,7 @@
 import { api } from "@/api";
 import type { ILoginData, ILoginResponseData, IRegisterData } from "@/types";
 
-export const authService = {
+export const authQueries = {
   login: (userData: ILoginData) => {
     return api.post<ILoginResponseData>("/login", userData);
   },

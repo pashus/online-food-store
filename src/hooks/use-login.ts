@@ -1,7 +1,6 @@
-import { toast } from "@/features";
-import { setToken } from "@/features/authSlice";
+import { authQueries } from "@/api";
+import { setToken } from "@/features/auth-slice";
 import { useAppDispatch } from "@/hooks";
-import { authService } from "@/services";
 import type { ILoginData } from "@/types";
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
@@ -18,7 +17,7 @@ export const useLogin = () => {
 
   return useMutation({
     mutationFn: async (userData: ILoginData) => {
-      const { data } = await authService.login(userData);
+      const { data } = await authQueries.login(userData);
       return data;
     },
     onSuccess: (data) => {

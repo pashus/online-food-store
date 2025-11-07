@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@/hooks";
-import { logout } from "@/features/authSlice";
+import { logout } from "@/features/auth-slice";
 import { useNavigate } from "react-router-dom";
 
 export function UsersPage() {

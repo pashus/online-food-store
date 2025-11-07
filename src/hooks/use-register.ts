@@ -1,4 +1,4 @@
-import { authService } from "@/services";
+import { authQueries } from "@/api";
 import type { IRegisterData } from "@/types";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ export const useRegister = () => {
 
   return useMutation({
     mutationFn: async (userData: IRegisterData) => {
-      const { data } = await authService.register(userData);
+      const { data } = await authQueries.register(userData);
       return data;
     },
     onSuccess: () => {
